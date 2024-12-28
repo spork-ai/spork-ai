@@ -1,0 +1,13 @@
+# MacOS
+.DS_Store
+
+# Node.js
+node_modules/
+
+# Build files
+dist/
+build/
+
+# Linting
+.eslintcache
+.stylelintcache
