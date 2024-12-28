@@ -15,5 +15,5 @@ build/
 .eslintcache
 .stylelintcache
 
-# idea
-/.idea/
+# ide
+.idea/
