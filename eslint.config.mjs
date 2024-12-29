@@ -13,8 +13,13 @@ export default [
     {
         settings: {
             react: {
-                version: 'detect'
+                version: '18.0'
             }
+        }
+    },
+    {
+        rules: {
+            'react/react-in-jsx-scope': 'off'
         }
     }
 ];
