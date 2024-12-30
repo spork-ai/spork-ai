@@ -7,6 +7,6 @@ const app: Application = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/ai', openaiApiRouter);
+app.use('/generate', openaiApiRouter);
 
 export default app;
