@@ -1,5 +1,7 @@
+import LandingPage from './LandingPage.tsx';
+
 function App() {
-    return <div>Hello</div>;
+    return <LandingPage />;
 }
 
 export default App;
