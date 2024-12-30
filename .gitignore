@@ -17,3 +17,6 @@ build/
 
 # ide
 .idea/
+
+# env file
+*.env
