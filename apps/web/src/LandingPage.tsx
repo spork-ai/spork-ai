@@ -2,11 +2,12 @@ import { useEffect } from 'react';
 
 function LandingPage() {
     useEffect(() => {
-        const handleMouseClick = () => {
+        const handleMouseClick = (): void => {
             handlePageTransition();
         };
-        const handleKeyDown = (event: KeyboardEvent) => {
-            if (event.key) {
+
+        const handleKeyDown = (event: KeyboardEvent): void => {
+            if (event.key === ' ' || event.key === 'Enter') {
                 handlePageTransition();
             }
         };
@@ -20,7 +21,7 @@ function LandingPage() {
         };
     });
 
-    function handlePageTransition() {
+    function handlePageTransition(): void {
         console.log('handlePageTransition triggered');
     }
 
