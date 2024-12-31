@@ -2,10 +2,14 @@ import { ReactElement } from 'react';
 import { ICON_FILL_PRIMARY } from '../constants.tsx';
 import { IconProps } from '../types.tsx';
 
+interface IconCircleProps extends IconProps {
+    children?: ReactElement;
+}
+
 const DEFAULT_SIZE = 50;
 const DEFAULT_RATIO = 1;
 
-function IconCircle(props: IconProps): ReactElement {
+function IconCircle(props: IconCircleProps): ReactElement {
     const { fill = ICON_FILL_PRIMARY, ratio = DEFAULT_RATIO } = props;
     const iconSize = DEFAULT_SIZE / ratio;
 

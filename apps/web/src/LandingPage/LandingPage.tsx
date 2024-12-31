@@ -1,4 +1,4 @@
-import LandingPageGreetingText from './LandingPageGreetingText.tsx';
+import LandingPageGreeting from './LandingPageGreeting.tsx';
 import LandingPageInput from './LandingPageInput.tsx';
 
 function LandingPage() {
@@ -8,7 +8,7 @@ function LandingPage() {
                 Login / Signup
             </div>
             <div className="flex h-full w-full flex-col items-center justify-between pb-20 pt-36">
-                <LandingPageGreetingText />
+                <LandingPageGreeting />
                 <LandingPageInput />
             </div>
         </div>
