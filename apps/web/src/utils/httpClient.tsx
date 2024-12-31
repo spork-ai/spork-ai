@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-export async function generateRecipe(body: string): Promise<void> {
+export async function generateRecipe(prompt: string): Promise<void> {
     try {
         const response = await axios.post('http://localhost:3000/generate', {
-            prompt: body
+            prompt: prompt
         });
         console.log('response', response);
     } catch (error) {
-        console.error('Error while generating recipes:', error);
+        console.error('Unexpected error:', error);
     }
 }

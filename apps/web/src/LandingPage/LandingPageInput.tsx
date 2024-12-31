@@ -2,7 +2,7 @@ import { KeyboardEvent, useRef } from 'react';
 import IconMicrophone from '../assets/IconMicrophone.tsx';
 import IconCircle from '../assets/IconCircle.tsx';
 import IconArrowTurnLeft from '../assets/IconArrowTurnLeft.tsx';
-import { generateRecipe } from '../httpClient.tsx';
+import { generateRecipe } from '../utils/httpClient.tsx';
 import { LANDING_PAGE_TEXT_AREA_PLACEHOLDER } from '../constants.tsx';
 
 const MIN_TEXT_AREA_HEIGHT = 48;
@@ -13,18 +13,20 @@ function LandingPageInput() {
     function handleInput(): void {
         const textArea = textAreaRef.current;
 
-        if (textArea) {
-            // Reset height to default (min-height) if content is deleted
-            textArea.style.height = `${MIN_TEXT_AREA_HEIGHT}px`;
-
-            // Set height to the scrollHeight if content is added
-            textArea.style.height = `${textArea.scrollHeight}px`;
-
-            // Adjust padding based on height
-            textArea.style.padding = `12px 64px 12px ${
-                textArea.scrollHeight > MIN_TEXT_AREA_HEIGHT ? '32px' : '20px'
-            }`;
+        if (!textArea) {
+            return;
         }
+
+        // Reset height to default (min-height) if content is deleted
+        textArea.style.height = `${MIN_TEXT_AREA_HEIGHT}px`;
+
+        // Set height to the scrollHeight if content is added
+        textArea.style.height = `${textArea.scrollHeight}px`;
+
+        // Adjust padding based on height
+        textArea.style.padding = `12px 64px 12px ${
+            textArea.scrollHeight > MIN_TEXT_AREA_HEIGHT ? '32px' : '20px'
+        }`;
     }
 
     function handleKeyDown(event: KeyboardEvent<HTMLTextAreaElement>): void {
@@ -39,9 +41,8 @@ function LandingPageInput() {
             return;
         }
 
-        const apiBodyContent = textAreaRef.current.value;
-        console.log('apiBodyContent', apiBodyContent);
-        generateRecipe(apiBodyContent);
+        const prompt = textAreaRef.current.value;
+        generateRecipe(prompt);
     }
 
     return (
