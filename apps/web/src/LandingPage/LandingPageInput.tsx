@@ -1,28 +1,29 @@
 import { KeyboardEvent, useRef } from 'react';
-import axios from 'axios';
 import IconMicrophone from '../assets/IconMicrophone.tsx';
 import IconCircle from '../assets/IconCircle.tsx';
 import IconArrowTurnLeft from '../assets/IconArrowTurnLeft.tsx';
+import { generateRecipe } from '../httpClient.tsx';
+import { LANDING_PAGE_TEXT_AREA_PLACEHOLDER } from '../constants.tsx';
+
+const MIN_TEXT_AREA_HEIGHT = 48;
 
 function LandingPageInput() {
-    const textareaRef = useRef<HTMLTextAreaElement>(null);
+    const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
     function handleInput(): void {
-        if (textareaRef.current) {
+        const textArea = textAreaRef.current;
+
+        if (textArea) {
             // Reset height to default (min-height) if content is deleted
-            textareaRef.current.style.height = '48px';
+            textArea.style.height = `${MIN_TEXT_AREA_HEIGHT}px`;
 
             // Set height to the scrollHeight if content is added
-            textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+            textArea.style.height = `${textArea.scrollHeight}px`;
 
             // Adjust padding based on height
-            if (textareaRef.current.scrollHeight > 48) {
-                // Increase padding when height is greater than 48px
-                textareaRef.current.style.padding = '12px 64px 12px 32px';
-            } else {
-                // Reset padding to original when height is 48px or smaller
-                textareaRef.current.style.padding = '12px 64px 12px 20px';
-            }
+            textArea.style.padding = `12px 64px 12px ${
+                textArea.scrollHeight > MIN_TEXT_AREA_HEIGHT ? '32px' : '20px'
+            }`;
         }
     }
 
@@ -33,21 +34,14 @@ function LandingPageInput() {
         }
     }
 
-    async function handleSubmit(): Promise<void> {
-        if (textareaRef.current) {
-            const apiBodyContent = textareaRef.current.value;
-            console.log('apiBodyContent', apiBodyContent);
-
-            try {
-                const response = await axios.post(
-                    'http://localhost:3000/generate',
-                    { apiBodyContent }
-                );
-                console.log('response', response);
-            } catch (error) {
-                console.error('Error while generating recipes:', error);
-            }
+    function handleSubmit(): void {
+        if (!textAreaRef.current) {
+            return;
         }
+
+        const apiBodyContent = textAreaRef.current.value;
+        console.log('apiBodyContent', apiBodyContent);
+        generateRecipe(apiBodyContent);
     }
 
     return (
@@ -58,9 +52,9 @@ function LandingPageInput() {
                 </IconCircle>
             </button>
             <textarea
-                ref={textareaRef}
+                ref={textAreaRef}
                 className="h-12 max-h-24 min-h-12 w-[93%] resize-none rounded-full border-2 border-transparent py-3 pl-5 pr-14 drop-shadow focus:border-[#5bd4af] focus:outline-none"
-                placeholder="Add ingredients you have on hand, separated by commas"
+                placeholder={LANDING_PAGE_TEXT_AREA_PLACEHOLDER}
                 onInput={handleInput}
                 onKeyDown={handleKeyDown}
             />
