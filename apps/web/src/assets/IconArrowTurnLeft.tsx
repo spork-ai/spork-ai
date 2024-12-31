@@ -5,21 +5,19 @@
  */
 
 import { ReactElement } from 'react';
+import { ICON_FILL_PRIMARY } from '../constants.tsx';
+import { IconProps } from '../types.tsx';
 
-interface IconArrowTurnLeftProps {
-    fill?: string;
-    ratio?: number;
-}
+const DEFAULT_RATIO = 0.8;
 
-function IconArrowTurnLeft(props: IconArrowTurnLeftProps): ReactElement {
-    const { ratio = 0.8, fill = '#5bd4af' } = props;
+function IconArrowTurnLeft(props: IconProps): ReactElement {
+    const { ratio = DEFAULT_RATIO, fill = ICON_FILL_PRIMARY } = props;
 
     return (
         <svg
-            className="rotate-90"
+            className={`rotate-90 ${fill}`}
             height={14 / ratio}
             width={10.5 / ratio}
-            fill={fill}
             viewBox="0 0 384 512"
             xmlns="http://www.w3.org/2000/svg"
         >

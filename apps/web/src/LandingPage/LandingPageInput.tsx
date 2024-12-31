@@ -1,6 +1,6 @@
-import IconMicrophone from './assets/IconMicrophone.tsx';
-import IconCircle from './assets/IconCircle.tsx';
-import IconArrowTurnLeft from './assets/IconArrowTurnLeft.tsx';
+import IconMicrophone from '../assets/IconMicrophone.tsx';
+import IconCircle from '../assets/IconCircle.tsx';
+import IconArrowTurnLeft from '../assets/IconArrowTurnLeft.tsx';
 
 function LandingPageInput() {
     return (
