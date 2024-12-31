@@ -8,3 +8,9 @@
         @apply text-base;
     }
 }
+
+@layer components {
+    textarea::-webkit-scrollbar {
+        display: none;
+    }
+}
